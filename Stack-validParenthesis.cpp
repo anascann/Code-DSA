@@ -2,33 +2,34 @@
  #include<iostream>
  
  using namespace std;
- 
- bool isValid(string s) {
-        stack <int> s1;
+  bool isValid(string s) {
+        stack <char> s1;
+       
+       
+        for(char b : s){
+            if(b=='(' || b=='{' || b=='['){
+                s1.push(b);
         
-        int curr=0;   
-        while(curr < s.length()){
-            if(s[curr]=='(' || s[curr]=='{' || s[curr]=='['){
-                s1.push(s[curr]);
-                curr++;
-            }else if(s[curr]==')' || s[curr]=='}' || s[curr]==']'){
-                
-            if(s1.top()==s[curr]){
-                s1.pop();
-                curr++;
             }else{
-                break;
-            }
-                    
                 
+                if(s1.empty()) return false;
+                
+                if(s1.top()!='(' && b==')')return false;
+                
+                if(s1.top()!='{' && b=='}')return false;
+                
+                if(s1.top()!='[' && b==']') return false;
+                        
+                s1.pop();
+                 
+            
             }
+            
+            
+                
         
             
         }
         
-        if(s1.empty()){
-            return true;
-        }else{
-            return false;
-        }
+      return s1.empty();
     }
